@@ -2,7 +2,7 @@ package org.wahlzeit.model;
 
 
 public class Coordinate {
-	static final double eps = 1e7;
+	static final double eps = 1e-7;
 	private double x;
 	private double y; 
 	private double z;

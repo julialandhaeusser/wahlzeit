@@ -33,6 +33,7 @@ import org.wahlzeit.services.Language;
 import org.wahlzeit.services.ObjectManager;
 
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * A photo represents a user-provided (uploaded) photo.
@@ -131,6 +132,8 @@ public class Photo extends DataObject {
 	@Parent
 	Key parent = ObjectManager.applicationRootKey;
 
+	
+	public Optional<Location> location;
 	/**
 	 *
 	 */

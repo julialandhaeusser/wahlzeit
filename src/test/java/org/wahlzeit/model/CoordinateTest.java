@@ -26,4 +26,18 @@ public class CoordinateTest {
 		assertFalse(first.isEqual(second));
 		assertTrue(first.isEqual(third));
 	}
+
+	@Test
+	public void equalTest (){
+		Coordinate first = new Coordinate(1, 1, 1);
+		Coordinate second = new Coordinate(1,1,1);
+		Coordinate third = new Coordinate(0,1,0);
+		Object fourth = new Object();
+
+
+		assertTrue(first.equals(first));
+		assertTrue(first.equals(second));
+		assertFalse(first.equals(third));
+		assertFalse(first.equals(fourth));
+	}
 }

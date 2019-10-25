@@ -27,7 +27,7 @@ public class Coordinate {
 	public boolean isEqual (Coordinate otherCoordinate) {
 	 
 		
-		if (Math.abs(getDistance(otherCoordinate)) <= eps) {
+		if (getDistance(otherCoordinate) <= eps) {
 			return true;
 		}else {
 			return false; 

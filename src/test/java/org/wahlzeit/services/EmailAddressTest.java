@@ -70,23 +70,23 @@ public class EmailAddressTest extends TestCase {
 		assertFalse(EmailAddress.EMPTY.isValid());
 	}
 
-	public void testAsInteretAdress() throws AddressException {
-		EmailAddress adressTest = new EmailAddress("test@testfile.de");
-		EmailAddress adressTestWrong = new EmailAddress("testfile.de");
-		EmailAddress adressTestWrong2 = new EmailAddress("");
-		EmailAddress adressTestWrong3 = new EmailAddress("test,testfile");
+	public void testAsInternetAddress() throws AddressException {
+		EmailAddress addressTest = new EmailAddress("test@testfile.de");
+		EmailAddress addressTest2 = new EmailAddress("testfile.de");
+		EmailAddress addressTestWrong2 = new EmailAddress("");
+		EmailAddress addressTestWrong3 = new EmailAddress("test,testfile");
 
-		assertEquals(new InternetAddress("test@testfile.de"), adressTest.asInternetAddress());
-		assertEquals(new InternetAddress("testfile.de"), adressTestWrong.asInternetAddress());
-		assertEquals(null, adressTestWrong2.asInternetAddress());
-		assertEquals(null, adressTestWrong3.asInternetAddress());
+		assertEquals(new InternetAddress("test@testfile.de"), addressTest.asInternetAddress());
+		assertEquals(new InternetAddress("testfile.de"), addressTest2.asInternetAddress());
+		assertEquals(null, addressTestWrong2.asInternetAddress());
+		assertEquals(null, addressTestWrong3.asInternetAddress());
 	}
 	public void testIsEqual (){
-		EmailAddress adressTest = new EmailAddress("test@testfile.de");
-		EmailAddress adressTestWrong = new EmailAddress("test@testfile.de");
+		EmailAddress addressTest = new EmailAddress("test@testfile.de");
+		EmailAddress addressTestWrong = new EmailAddress("test@testfile.de");
 
-		assertTrue(adressTest.isEqual(adressTest));
-		assertFalse(adressTest.isEqual(adressTestWrong));
+		assertTrue(addressTest.isEqual(addressTest));
+		assertFalse(addressTest.isEqual(addressTestWrong));
 	}
 
 	public void testAsString(){

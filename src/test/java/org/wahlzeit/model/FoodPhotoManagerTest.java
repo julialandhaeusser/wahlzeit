@@ -1,22 +1,17 @@
 package org.wahlzeit.model;
 
-import com.google.appengine.api.images.Image;
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.util.Closeable;
-import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
-import org.mockito.Mockito;
 import org.wahlzeit.model.persistence.DatastoreAdapter;
 import org.wahlzeit.model.persistence.ImageStorage;
 import org.wahlzeit.services.OfyService;
 
 import java.io.IOException;
-import java.util.HashSet;
+import java.lang.reflect.Field;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -24,7 +19,10 @@ import static org.junit.Assert.*;
 public class FoodPhotoManagerTest {
 
     @BeforeClass
-    public static void initializeFactory() {
+    public static void initializeFactory() throws Exception {
+        Field field = PhotoFactory.class.getDeclaredField ("instance");
+        field.setAccessible(true);
+        field.set(null, null);
         FoodPhotoFactory.initialize();
     }
 

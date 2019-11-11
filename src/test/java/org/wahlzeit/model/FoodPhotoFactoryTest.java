@@ -4,16 +4,26 @@ import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestC
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.util.Closeable;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.wahlzeit.services.OfyService;
+
+import java.lang.reflect.Field;
 
 import static org.junit.Assert.*;
 
 public class FoodPhotoFactoryTest {
 
+    @BeforeClass
+    public static void initializeFactory() throws Exception {
+        Field field = PhotoFactory.class.getDeclaredField ("instance");
+        field.setAccessible(true);
+        field.set(null, null);
+        FoodPhotoFactory.initialize();
+    }
     @Test
     public void initializeTest (){
-       FoodPhotoFactory.initialize();
+
        PhotoFactory test1 = PhotoFactory.getInstance();
 
        assertEquals((test1 instanceof FoodPhotoFactory), true);
@@ -22,8 +32,7 @@ public class FoodPhotoFactoryTest {
 
     @Test
     public void loadTest(){
-        //Set correct PhotoFactory instance
-        FoodPhotoFactory.initialize();
+
         //Setup local test google datestore environment
         LocalServiceTestHelper helper =
                 new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());

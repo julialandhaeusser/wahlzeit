@@ -43,7 +43,7 @@ public class FoodPhotoFactoryTest {
         //Create and save photo with id '10'
         PhotoId testId = new PhotoId(10);
         FoodPhoto foodPhoto = new FoodPhoto(testId);
-        OfyService.ofy().save().entity(foodPhoto);
+        OfyService.ofy().save().entity(foodPhoto).now();
 
         //Load foto with id '10' and check result
         Photo photo = PhotoFactory.getInstance().loadPhoto(testId);

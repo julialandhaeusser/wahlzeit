@@ -53,7 +53,7 @@ public class FoodPhotoManagerTest {
         //Create and save photo with id '15'
         PhotoId testId2 = new PhotoId(15);
         FoodPhoto foodPhoto2 = new FoodPhoto(testId2);
-        OfyService.ofy().save().entities(foodPhoto, foodPhoto2);
+        OfyService.ofy().save().entities(foodPhoto, foodPhoto2).now();
 
         //load photos
         FoodPhotoManager.instance.loadPhotos();

@@ -4,7 +4,7 @@ import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestC
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.util.Closeable;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 import org.wahlzeit.model.persistence.DatastoreAdapter;
 import org.wahlzeit.model.persistence.ImageStorage;
@@ -18,8 +18,8 @@ import static org.junit.Assert.*;
 
 public class FoodPhotoManagerTest {
 
-    @BeforeClass
-    public static void initializeFactory() throws Exception {
+    @Before
+    public void initializeFactory() throws Exception {
         Field field = PhotoFactory.class.getDeclaredField ("instance");
         field.setAccessible(true);
         field.set(null, null);

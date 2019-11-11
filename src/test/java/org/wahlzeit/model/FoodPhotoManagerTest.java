@@ -57,6 +57,8 @@ public class FoodPhotoManagerTest {
 
         //load photos
         FoodPhotoManager.instance.loadPhotos();
+
+        //tests
         assertTrue(PhotoManager.getInstance().photoCache.containsKey(testId));
         assertTrue(PhotoManager.getInstance().photoCache.containsValue(foodPhoto));
         assertTrue(PhotoManager.getInstance().photoCache.containsKey(testId2));

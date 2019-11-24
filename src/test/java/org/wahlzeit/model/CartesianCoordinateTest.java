@@ -7,25 +7,6 @@ import static org.junit.Assert.*;
 public class CartesianCoordinateTest {
 
 	private static final double EPS = 1e-7;
-	
-	@Test
-	public void getDistanceTest () {
-		CartesianCoordinate first = new CartesianCoordinate(1,1,1);
-		CartesianCoordinate second = new CartesianCoordinate(0,0,0);
-		
-		double distance = first.getDistance(second);
-		assertEquals(Math.sqrt(3), distance, EPS);
-	}
-
-	@Test
-	public void isEqualTest (){
-		CartesianCoordinate first = new CartesianCoordinate(1,1,1);
-		CartesianCoordinate second = new CartesianCoordinate(0,0,0);
-		CartesianCoordinate third = new CartesianCoordinate(1, 1, 1 + EPS/10.0);
-
-		assertFalse(first.isEqual(second));
-		assertTrue(first.isEqual(third));
-	}
 
 	@Test
 	public void equalsTest (){

@@ -19,11 +19,9 @@ public class FoodPhoto extends Photo {
         if(!(o instanceof FoodPhoto)){
             return false;
         }
-        if(((FoodPhoto) o).getId().equals(this.id)){
-            return true;
-        } else {
-            return false;
-        }
+
+        return ((FoodPhoto) o).getId().equals(this.id);
+
     }
 
 

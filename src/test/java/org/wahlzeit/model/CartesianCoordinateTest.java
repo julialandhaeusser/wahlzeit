@@ -1,6 +1,8 @@
 package org.wahlzeit.model;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.*;
 
@@ -31,6 +33,12 @@ public class CartesianCoordinateTest {
 		assertEquals(new SphericCoordinate(Math.PI/4,Math.PI/4, 3 ), first.asSphericCoordinate());
 		assertEquals(new SphericCoordinate(Math.PI/3,Math.PI*5/6, 5), second.asSphericCoordinate());
 		assertEquals(new SphericCoordinate(2.5*Math.PI,2.5*Math.PI, -5), third.asSphericCoordinate());
+
+	}
+
+	@Test(expected = AssertionError.class)
+	public void classInvarianceTest (){
+		CartesianCoordinate first = new CartesianCoordinate(Double.NaN, Double.NaN, Double.NaN);
 
 	}
 }

@@ -7,6 +7,7 @@ public class Location {
   this.coordinateLocation = coordinateLocation;
  }
 
+ 
  public void setCoordinateLocation (Coordinate location){
   if (location != null){
    coordinateLocation = location;

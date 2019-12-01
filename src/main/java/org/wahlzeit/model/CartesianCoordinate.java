@@ -11,6 +11,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
 		this.x = x;
 		this.y = y;
 		this.z = z;
+		assertClassInvariants();
 	}
 
 	public double getX() {
@@ -36,13 +37,10 @@ public class CartesianCoordinate extends AbstractCoordinate{
 		
 		if(otherCoordinate == this) {
 			return true;
-		}	
-		if(otherCoordinate instanceof CartesianCoordinate) {
-			
-			return isEqual((CartesianCoordinate) otherCoordinate);
-		}else {
-			return false; 
 		}
+
+		return otherCoordinate instanceof CartesianCoordinate && isEqual((CartesianCoordinate) otherCoordinate);
+
 	}
 
 	@Override
@@ -59,12 +57,21 @@ public class CartesianCoordinate extends AbstractCoordinate{
 
 	@Override
 	public SphericCoordinate asSphericCoordinate() {
+		assertClassInvariants();
 		double radius = Math.sqrt(Math.pow(this.x,2)+Math.pow(this.y,2)+Math.pow(this.z,2));
 		double theta = Math.atan2(this.y, this.x);
 		double phi = Math.acos(this.z/radius);
-		return new SphericCoordinate(phi, theta, radius);
+		SphericCoordinate sphericCoordinateNew = new SphericCoordinate(phi, theta, radius);
+		assertClassInvariants();
+		return sphericCoordinateNew;
 
 	}
 
 
+	@Override
+	public void assertClassInvariants() {
+		assert !Double.isNaN(x);
+		assert !Double.isNaN(y);
+		assert !Double.isNaN(z);
+	}
 }

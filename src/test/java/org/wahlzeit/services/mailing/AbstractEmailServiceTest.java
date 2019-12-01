@@ -3,6 +3,7 @@ package org.wahlzeit.services.mailing;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.wahlzeit.model.SphericCoordinate;
 import org.wahlzeit.services.EmailAddress;
 
 import static org.junit.Assert.assertFalse;
@@ -39,6 +40,7 @@ public class AbstractEmailServiceTest {
         }
 
     }
+
 
     @Test
     public void testSendValidEmailIgnoreException (){

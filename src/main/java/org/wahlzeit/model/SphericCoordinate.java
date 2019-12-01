@@ -7,14 +7,32 @@ public class SphericCoordinate extends AbstractCoordinate{
     private double radius;
 
     public SphericCoordinate (double phi, double theta, double radius){
+
         //Convention: (phi,theta,-radius) = (phi,theta+180deg,radius) see Wikipedia:Spheric Coordinates
         if(radius < 0) {
             radius = -radius;
             theta = theta + Math.PI;
         }
+
+        if(phi >= Math.PI*2){
+            phi = phi % (Math.PI*2);
+        } else if (phi < 0){
+            phi = phi % (Math.PI*2);
+            phi = phi + Math.PI*2;
+        }
+
+        if (theta >= Math.PI*2 ){
+            theta = theta % (Math.PI*2);
+        } else if (theta < 0){
+            theta = theta % (Math.PI*2);
+            theta = theta + Math.PI*2;
+        }
+
         this.phi = phi;
         this.theta = theta;
         this.radius = radius;
+
+        assertClassInvariants();
     }
 
     public double getPhi() {
@@ -31,10 +49,14 @@ public class SphericCoordinate extends AbstractCoordinate{
 
     @Override
     public CartesianCoordinate asCartesianCoordinate() {
+        assertClassInvariants();
         double x = this.radius * Math.cos(this.theta)*Math.sin(this.phi);
         double y = this.radius * Math.sin(this.theta)*Math.sin(this.phi);
         double z = this.radius* Math.cos(this.phi);
-        return new CartesianCoordinate(x, y, z);
+        CartesianCoordinate cartesianCoordinateNew = new CartesianCoordinate(x, y, z);
+
+        assertClassInvariants();
+        return cartesianCoordinateNew;
     }
 
 
@@ -49,12 +71,9 @@ public class SphericCoordinate extends AbstractCoordinate{
         if(otherCoordinate == this) {
             return true;
         }
-        if(otherCoordinate instanceof SphericCoordinate) {
 
-            return isEqual((SphericCoordinate) otherCoordinate);
-        }else {
-            return false;
-        }
+        return otherCoordinate instanceof SphericCoordinate && isEqual((SphericCoordinate) otherCoordinate);
+
     }
 
     @Override
@@ -71,5 +90,12 @@ public class SphericCoordinate extends AbstractCoordinate{
     @Override
     public String toString(){
         return "SphericCoordinate(Phi: "+phi +" Theta: " + theta +" Radius: " +radius +")";
+    }
+
+    @Override
+    public void assertClassInvariants() {
+        assert phi >= 0 && phi < Math.PI*2;
+        assert theta >= 0 && theta < Math.PI*2;
+        assert radius >= 0;
     }
 }

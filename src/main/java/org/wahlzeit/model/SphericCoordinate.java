@@ -99,13 +99,13 @@ public class SphericCoordinate extends AbstractCoordinate{
 
     @Override
     public void assertClassInvariants() {
-        if (phi < 0 || phi >= Math.PI*2){
+        if (phi < 0 || phi >= Math.PI*2 || Double.isNaN(phi)){
             throw new IllegalStateException("phi is not in range [0,2PI)");
         }
-        if (theta < 0 || theta >= Math.PI*2){
+        if (theta < 0 || theta >= Math.PI*2||Double.isNaN(theta)){
             throw new IllegalStateException("theta is not in range [0;2PI)");
         }
-        if (radius < 0){
+        if (radius < 0|| Double.isNaN(radius)){
             throw new IllegalStateException("radius is smaller than 0");
         }
     }

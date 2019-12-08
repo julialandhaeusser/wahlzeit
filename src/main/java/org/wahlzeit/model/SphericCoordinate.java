@@ -72,7 +72,12 @@ public class SphericCoordinate extends AbstractCoordinate{
             return true;
         }
 
-        return otherCoordinate instanceof SphericCoordinate && isEqual((SphericCoordinate) otherCoordinate);
+        try {
+            return otherCoordinate instanceof SphericCoordinate && isEqual((SphericCoordinate) otherCoordinate);
+        } catch (IllegalStateException | IllegalArgumentException ex){
+            return false;
+        }
+
 
     }
 
@@ -94,8 +99,14 @@ public class SphericCoordinate extends AbstractCoordinate{
 
     @Override
     public void assertClassInvariants() {
-        assert phi >= 0 && phi < Math.PI*2;
-        assert theta >= 0 && theta < Math.PI*2;
-        assert radius >= 0;
+        if (phi < 0 || phi >= Math.PI*2){
+            throw new IllegalStateException("phi is not in range [0,2PI)");
+        }
+        if (theta < 0 || theta >= Math.PI*2){
+            throw new IllegalStateException("theta is not in range [0;2PI)");
+        }
+        if (radius < 0){
+            throw new IllegalStateException("radius is smaller than 0");
+        }
     }
 }

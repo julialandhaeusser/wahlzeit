@@ -38,8 +38,12 @@ public class CartesianCoordinate extends AbstractCoordinate{
 		if(otherCoordinate == this) {
 			return true;
 		}
+		try {
+			return otherCoordinate instanceof CartesianCoordinate && isEqual((CartesianCoordinate) otherCoordinate);
+		} catch (IllegalArgumentException | IllegalStateException ex){
+			return false;
+		}
 
-		return otherCoordinate instanceof CartesianCoordinate && isEqual((CartesianCoordinate) otherCoordinate);
 
 	}
 
@@ -69,9 +73,16 @@ public class CartesianCoordinate extends AbstractCoordinate{
 
 
 	@Override
-	public void assertClassInvariants() {
-		assert !Double.isNaN(x);
-		assert !Double.isNaN(y);
-		assert !Double.isNaN(z);
+	public void assertClassInvariants () {
+		if (Double.isNaN(x)) {
+			throw new IllegalStateException ("x is not a number");
+		}
+		if (Double.isNaN(y)) {
+			throw new IllegalStateException ("y is not a number");
+		}
+
+		if (Double.isNaN(z)) {
+			throw new IllegalStateException ("z is not a number");
+		}
 	}
 }

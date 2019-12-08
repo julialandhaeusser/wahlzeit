@@ -55,4 +55,21 @@ public class FoodPhotoFactoryTest {
         closeable.close();
         helper.tearDown();
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void loadPhotoRejectionTest(){
+        //Setup local test google datestore environment
+        LocalServiceTestHelper helper =
+                new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
+        helper.setUp();
+        Closeable closeable = ObjectifyService.begin();
+
+        PhotoFactory foodPhotoFactory = FoodPhotoFactory.getInstance();
+        foodPhotoFactory.loadPhoto(null);
+
+        //Shutdown test environment
+        closeable.close();
+        helper.tearDown();
+
+    }
 }

@@ -18,11 +18,15 @@ public abstract class AbstractCoordinate implements Coordinate{
     @Override
     public double getCartesianDistance(Coordinate coordinate) {
         assertClassInvariants();
-        assert coordinate != null;
+        if (coordinate == null){
+            throw new IllegalArgumentException("coordinate is null");
+        }
         double cartesianDistance = getDistance(coordinate.asCartesianCoordinate());
 
         assertClassInvariants();
-        assert (!Double.isNaN(cartesianDistance));
+        if (Double.isNaN(cartesianDistance)){
+            throw new IllegalStateException("cartesianDistance is not a number");
+        }
         return cartesianDistance;
 
     }
@@ -31,7 +35,9 @@ public abstract class AbstractCoordinate implements Coordinate{
     @Override
     public double getCentralAngle(Coordinate coordinate) {
         assertClassInvariants();
-        assert coordinate != null;
+        if(coordinate == null){
+            throw new IllegalArgumentException("coordinate is null");
+        }
 
         SphericCoordinate otherAsSpheric = coordinate.asSphericCoordinate();
         SphericCoordinate thisAsSpheric = this.asSphericCoordinate();
@@ -43,7 +49,10 @@ public abstract class AbstractCoordinate implements Coordinate{
                 (Math.cos(phiDash1)*Math.cos(phiDash2)*Math.cos(deltaLambda)));
 
         assertClassInvariants();
-        assert centralAngle >= 0 && centralAngle < Math.PI*2;
+        if(centralAngle<0 || centralAngle>=Math.PI*2){
+            throw new IllegalStateException("central angle is not in range [0;2PI)");
+        }
+
 
         return centralAngle;
     }
@@ -51,7 +60,10 @@ public abstract class AbstractCoordinate implements Coordinate{
     @Override
     public boolean isEqual(Coordinate coordinate) {
         assertClassInvariants();
-        assert coordinate != null;
+        if(coordinate == null){
+            throw new IllegalArgumentException("coordinate is null");
+        }
+
 
         boolean coordinatesEqual = getCartesianDistance(coordinate.asCartesianCoordinate()) <= eps;
 

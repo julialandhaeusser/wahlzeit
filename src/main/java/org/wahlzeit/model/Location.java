@@ -9,11 +9,10 @@ public class Location {
 
  
  public void setCoordinateLocation (Coordinate location){
-  if (location != null){
-   coordinateLocation = location;
-  }else {
+  if (location == null){
    throw new IllegalArgumentException("Null is not a valid coordinate");
   }
+  coordinateLocation = location;
  }
 
  public Coordinate getCoordinateLocation (){

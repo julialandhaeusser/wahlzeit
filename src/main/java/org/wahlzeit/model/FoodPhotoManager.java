@@ -7,6 +7,7 @@ import org.wahlzeit.services.LogBuilder;
 import org.wahlzeit.services.OfyService;
 
 import java.io.IOException;
+import java.lang.annotation.Target;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -51,6 +52,9 @@ public class FoodPhotoManager extends PhotoManager {
 
     @Override
     public Set<Photo> findPhotosByOwner(String ownerName) {
+        if (ownerName == null){
+            throw new IllegalArgumentException("ownerName is null");
+        }
         Set<FoodPhoto> result = new HashSet<>();
         result.addAll(OfyService.ofy().load().type(FoodPhoto.class).
                 ancestor(applicationRootKey).list());
@@ -95,9 +99,13 @@ public class FoodPhotoManager extends PhotoManager {
         }
 
         PhotoId id = photo.getId();
+
         assertIsNewPhoto(id);
+
         doAddPhoto(photo);
 
         GlobalsManager.getInstance().saveGlobals();
     }
+
+
 }

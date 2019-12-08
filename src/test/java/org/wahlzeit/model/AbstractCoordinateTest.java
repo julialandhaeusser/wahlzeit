@@ -70,21 +70,21 @@ public class AbstractCoordinateTest {
         assertTrue(first.isEqual(third));
     }
 
-    @Test(expected = AssertionError.class)
+    @Test(expected = IllegalArgumentException.class)
     public void getCartesianDistanceRejectionTest (){
 
         CartesianCoordinate first = new CartesianCoordinate(1,1,1);
         first.getCartesianDistance(null);
     }
 
-    @Test(expected = AssertionError.class)
+    @Test(expected = IllegalArgumentException.class)
     public void getCentralAngleRejectionTest (){
 
         CartesianCoordinate first = new CartesianCoordinate(1,1,1);
         first.getCartesianDistance(null);
     }
 
-    @Test(expected = AssertionError.class)
+    @Test(expected = IllegalArgumentException.class)
     public void isEqualRejectionTest (){
 
         CartesianCoordinate first = new CartesianCoordinate(1,1,1);

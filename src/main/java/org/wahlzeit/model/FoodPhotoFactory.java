@@ -10,6 +10,7 @@ public class FoodPhotoFactory extends PhotoFactory {
      * Hidden singleton instance; needs to be initialized from the outside.
      */
     public static void initialize() {
+
         PhotoFactory.setInstance(new FoodPhotoFactory());
     }
 
@@ -33,6 +34,10 @@ public class FoodPhotoFactory extends PhotoFactory {
      */
     @Override
     public Photo loadPhoto(PhotoId id) {
+        if (id ==null){
+            throw new IllegalArgumentException("id is null");
+        }
+
         Iterator<FoodPhoto> iterator = OfyService.ofy().load().type(FoodPhoto.class).iterator();
         Photo result = null;
         while (iterator.hasNext()) {

@@ -168,5 +168,24 @@ public class FoodPhotoManagerTest {
 
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void findPhotosByOwnerRejectionTest(){
+        //Setup local test google datestore environment
+        LocalServiceTestHelper helper =
+                new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig());
+        helper.setUp();
+        Closeable closeable = ObjectifyService.begin();
+
+        //Set correct PhotoFactory instance
+        ImageStorage.setInstance(new DatastoreAdapter());
+        FoodPhotoManager.initialize();
+        PhotoManager foodPhotoManager = FoodPhotoManager.getInstance();
+        foodPhotoManager.findPhotosByOwner(null);
+
+        //Shutdown test environment
+        closeable.close();
+        helper.tearDown();
+    }
+
 }
 

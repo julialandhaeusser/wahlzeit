@@ -36,7 +36,7 @@ public class CartesianCoordinateTest {
 
 	}
 
-	@Test(expected = AssertionError.class)
+	@Test(expected = IllegalStateException.class)
 	public void classInvarianceTest (){
 		CartesianCoordinate first = new CartesianCoordinate(Double.NaN, Double.NaN, Double.NaN);
 

@@ -8,6 +8,9 @@ public class FoodPhoto extends Photo {
     public FoodPhoto (PhotoId id) {
         super(id);
 
+        if (id==null){
+            throw new IllegalArgumentException("Id is null");
+        }
     }
 
     public FoodPhoto (){
@@ -16,6 +19,7 @@ public class FoodPhoto extends Photo {
 
     @Override
     public boolean equals (Object o){
+
         if(!(o instanceof FoodPhoto)){
             return false;
         }

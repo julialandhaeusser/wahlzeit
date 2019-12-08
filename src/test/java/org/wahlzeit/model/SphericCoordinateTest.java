@@ -31,7 +31,7 @@ public class SphericCoordinateTest {
         assertFalse(first.equals(cc));
     }
 
-    @Test(expected = AssertionError.class)
+    @Test(expected = IllegalStateException.class)
     public void classInvarianceTest (){
         SphericCoordinate first = new SphericCoordinate(Double.NaN, Double.NaN, Double.NaN);
 

@@ -12,10 +12,10 @@ public class AbstractCoordinateTest {
 
     @Test
     public void getCartesianDistanceTest () {
-        CartesianCoordinate cartesianFirst = new CartesianCoordinate(1,1,1);
-        CartesianCoordinate cartesianSecond = new CartesianCoordinate(0,0,0);
-        SphericCoordinate sphericFirst = new SphericCoordinate(2.5*Math.PI,2.5*Math.PI, -5 );
-        SphericCoordinate sphericSecond = new SphericCoordinate(0,0,0);
+        CartesianCoordinate cartesianFirst = CartesianCoordinate.createCartesianCoordinate(1,1,1);
+        CartesianCoordinate cartesianSecond = CartesianCoordinate.createCartesianCoordinate(0,0,0);
+        SphericCoordinate sphericFirst = SphericCoordinate.createSphericCoordinate(2.5*Math.PI,2.5*Math.PI, -5 );
+        SphericCoordinate sphericSecond = SphericCoordinate.createSphericCoordinate(0,0,0);
 
         double distance = cartesianFirst.getCartesianDistance(cartesianSecond);
         assertEquals(Math.sqrt(3), distance, EPS);
@@ -32,10 +32,10 @@ public class AbstractCoordinateTest {
 
     @Test
     public void getCentralAngleTest() {
-        SphericCoordinate sphericFirst = new SphericCoordinate(Math.PI/2, 0, 1);
-        SphericCoordinate sphericSecond = new SphericCoordinate(Math.PI/2, Math.PI/2, 1);
-        CartesianCoordinate cartesianFirst = new CartesianCoordinate(1,0,0);
-        CartesianCoordinate cartesianSecond = new CartesianCoordinate(0,1,0);
+        SphericCoordinate sphericFirst = SphericCoordinate.createSphericCoordinate(Math.PI/2, 0, 1);
+        SphericCoordinate sphericSecond = SphericCoordinate.createSphericCoordinate(Math.PI/2, Math.PI/2, 1);
+        CartesianCoordinate cartesianFirst = CartesianCoordinate.createCartesianCoordinate(1,0,0);
+        CartesianCoordinate cartesianSecond = CartesianCoordinate.createCartesianCoordinate(0,1,0);
 
 
         assertEquals(Math.PI/2, sphericFirst.getCentralAngle(sphericSecond), EPS);
@@ -48,11 +48,11 @@ public class AbstractCoordinateTest {
 
     @Test
     public void isEquaSphericlTest (){
-        SphericCoordinate first = new SphericCoordinate(Math.PI/3, Math.PI/4, 10);
-        SphericCoordinate second = new SphericCoordinate(Math.PI/3, Math.PI/4, 12);
-        SphericCoordinate third = new SphericCoordinate(Math.PI/3, 5*Math.PI/4, -10);
-        SphericCoordinate fourth = new SphericCoordinate(7*Math.PI/3, Math.PI/4, 10);
-        SphericCoordinate fifth = new SphericCoordinate(1,2,10);
+        SphericCoordinate first = SphericCoordinate.createSphericCoordinate(Math.PI/3, Math.PI/4, 10);
+        SphericCoordinate second = SphericCoordinate.createSphericCoordinate(Math.PI/3, Math.PI/4, 12);
+        SphericCoordinate third = SphericCoordinate.createSphericCoordinate(Math.PI/3, 5*Math.PI/4, -10);
+        SphericCoordinate fourth = SphericCoordinate.createSphericCoordinate(7*Math.PI/3, Math.PI/4, 10);
+        SphericCoordinate fifth = SphericCoordinate.createSphericCoordinate(1,2,10);
 
         assertFalse(first.isEqual(second));
         assertTrue(first.isEqual(third));
@@ -62,9 +62,9 @@ public class AbstractCoordinateTest {
 
     @Test
     public void isEqualCartesianTest (){
-        CartesianCoordinate first = new CartesianCoordinate(1,1,1);
-        CartesianCoordinate second = new CartesianCoordinate(0,0,0);
-        CartesianCoordinate third = new CartesianCoordinate(1, 1, 1 + EPS/10.0);
+        CartesianCoordinate first = CartesianCoordinate.createCartesianCoordinate(1,1,1);
+        CartesianCoordinate second = CartesianCoordinate.createCartesianCoordinate(0,0,0);
+        CartesianCoordinate third = CartesianCoordinate.createCartesianCoordinate(1, 1, 1 + EPS/10.0);
 
         assertFalse(first.isEqual(second));
         assertTrue(first.isEqual(third));
@@ -73,21 +73,21 @@ public class AbstractCoordinateTest {
     @Test(expected = IllegalArgumentException.class)
     public void getCartesianDistanceRejectionTest (){
 
-        CartesianCoordinate first = new CartesianCoordinate(1,1,1);
+        CartesianCoordinate first = CartesianCoordinate.createCartesianCoordinate(1,1,1);
         first.getCartesianDistance(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void getCentralAngleRejectionTest (){
 
-        CartesianCoordinate first = new CartesianCoordinate(1,1,1);
+        CartesianCoordinate first = CartesianCoordinate.createCartesianCoordinate(1,1,1);
         first.getCartesianDistance(null);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void isEqualRejectionTest (){
 
-        CartesianCoordinate first = new CartesianCoordinate(1,1,1);
+        CartesianCoordinate first = CartesianCoordinate.createCartesianCoordinate(1,1,1);
         first.isEqual(null);
     }
 }

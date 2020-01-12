@@ -1,9 +1,15 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.DesignPattern;
 
+@DesignPattern(
+        name = "template method",
+        participants = {"AbstractClass"}
+)
 public abstract class AbstractCoordinate implements Coordinate{
     static final double eps = 1e-7;
 
+    //template method: calls abstract method asCartesianCoordinate()
     private double getDistance (CartesianCoordinate otherCoordinate) {
 
         CartesianCoordinate thisAsCartesian = this.asCartesianCoordinate();

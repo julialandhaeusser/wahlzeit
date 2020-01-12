@@ -1,9 +1,14 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.DesignPattern;
 import org.wahlzeit.services.OfyService;
 
 import java.util.Iterator;
 
+@DesignPattern(
+        name = "Abstract Factory",
+        participants = {"ConcreteFactory"}
+)
 public class FoodPhotoFactory extends PhotoFactory {
 
     /**

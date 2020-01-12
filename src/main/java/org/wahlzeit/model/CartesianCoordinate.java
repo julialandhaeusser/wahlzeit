@@ -1,15 +1,20 @@
 package org.wahlzeit.model;
 
 
+import org.wahlzeit.DesignPattern;
+
 import java.util.HashMap;
 import java.util.HashSet;
-
+@DesignPattern(
+		name = "template method",
+		participants = {"ConcreteClass"}
+)
 public class CartesianCoordinate extends AbstractCoordinate{
 	private double x;
 	private double y; 
 	private double z;
 
-	static HashSet <CartesianCoordinate> allCartesianCoordinates = new HashSet<>();
+	static HashMap <String, CartesianCoordinate> allCartesianCoordinates = new HashMap<>();
 
 	
 	private CartesianCoordinate(double x, double y, double z) {
@@ -19,18 +24,29 @@ public class CartesianCoordinate extends AbstractCoordinate{
 		assertClassInvariants();
 	}
 
-	public static CartesianCoordinate createCartesianCoordinate(double x, double y, double z){
-		for (CartesianCoordinate coordinate : allCartesianCoordinates){
-			if(Math.abs(coordinate.getX() - x) < AbstractCoordinate.eps
-					&& Math.abs(coordinate.getY() - y) < AbstractCoordinate.eps
-					&& Math.abs(coordinate.getZ() - z) < AbstractCoordinate.eps ){
-				return coordinate;
-			}
+	private static String generateHashKey(double x, double y, double z) {
+		//Avoid negative zero
+		if(Math.abs(x) < eps) {
+			x = 0.0;
 		}
+		if(Math.abs(y) < eps) {
+			y = 0.0;
+		}
+		if(Math.abs(z) < eps) {
+			z = 0.0;
+		}
+		return String.format("%.5f", x) + ";" + String.format("%.5f", y) + ";" + String.format("%.5f", z);
+	}
 
-		CartesianCoordinate newCoordinate = new CartesianCoordinate(x,y,z);
-		allCartesianCoordinates.add(newCoordinate);
-		return newCoordinate;
+	public static CartesianCoordinate createCartesianCoordinate(double x, double y, double z){
+
+		String key = generateHashKey(x,y,z);
+		CartesianCoordinate value = allCartesianCoordinates.get(key);
+		if(value == null) {
+			value = new CartesianCoordinate(x,y,z);
+			allCartesianCoordinates.put(key, value);
+		}
+		return value;
 	}
 
 

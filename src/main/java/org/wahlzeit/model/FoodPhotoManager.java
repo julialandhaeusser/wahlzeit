@@ -3,6 +3,7 @@ package org.wahlzeit.model;
 import com.google.appengine.api.images.Image;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.Work;
+import org.wahlzeit.DesignPattern;
 import org.wahlzeit.services.LogBuilder;
 import org.wahlzeit.services.OfyService;
 
@@ -11,6 +12,10 @@ import java.lang.annotation.Target;
 import java.util.*;
 import java.util.logging.Logger;
 
+@DesignPattern(
+        name = "Singleton",
+        participants = {"Singleton"}
+)
 public class FoodPhotoManager extends PhotoManager {
     //Singleton
 

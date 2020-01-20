@@ -1,5 +1,6 @@
 package org.wahlzeit.model;
 
+import com.googlecode.objectify.annotation.Ignore;
 import com.googlecode.objectify.annotation.Subclass;
 import org.wahlzeit.DesignPattern;
 
@@ -13,6 +14,7 @@ import java.util.Optional;
 @Subclass(index=true)
 public class FoodPhoto extends Photo {
 
+    @Ignore
     private Food food;
 
     public FoodPhoto (PhotoId id) {

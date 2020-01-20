@@ -64,6 +64,9 @@ public abstract class ModelMain extends AbstractMain {
 		log.config(LogBuilder.createSystemMessage().addAction("load FoodPhotos").toString());
 		FoodPhotoManager.initialize();
 		FoodPhotoManager.getInstance().init();
+
+		log.config(LogBuilder.createSystemMessage().addAction("initialize FoodManager").toString());
+		FoodManager.initialize();
 	}
 
 

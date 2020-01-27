@@ -1,9 +1,15 @@
 package org.wahlzeit.model;
 
 
+import org.wahlzeit.DesignPattern;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@DesignPattern(
+        name = "Type Object",
+        participants = {"DomainClass"}
+)
 public class Food {
 
     private List<FoodPhoto> foodPhotoList = new ArrayList<FoodPhoto>();
@@ -14,7 +20,7 @@ public class Food {
 
     private int id;
 
-    public Food (FoodType foodType){
+    Food (FoodType foodType){
         newFoodType = foodType;
         id = instanceCounter;
         instanceCounter++;

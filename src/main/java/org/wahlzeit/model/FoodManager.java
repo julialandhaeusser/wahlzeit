@@ -1,6 +1,9 @@
 package org.wahlzeit.model;
+import org.wahlzeit.DesignPattern;
+
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class FoodManager {
 

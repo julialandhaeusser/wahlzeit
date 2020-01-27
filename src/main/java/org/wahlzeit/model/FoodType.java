@@ -1,5 +1,11 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.DesignPattern;
+
+@DesignPattern(
+        name = "Type Object",
+        participants = {"TypeClass"}
+)
 public class FoodType {
     protected FoodType superType;
 
